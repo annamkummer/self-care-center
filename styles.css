@@ -5,6 +5,7 @@ light-blue - #78a7c6;
 dark-blue - #134d71;
 white - #ffffff;
 black - #000000; */
+
 html {
   height: 100%;
   background-image: linear-gradient(#134d71, #78a7c6, #f7e4bf);
@@ -17,15 +18,17 @@ body {
 
 }
 
+.white-text {
+  color: white;
+}
+
 header {
   font-size: xx-large;
   font-weight: bold;
-  color: #ffffff;
   margin: 4% 0% 8% 0%;
 }
 
 h3 {
-  color: #ffffff;
   margin: 0% 0% 1% 0%;
 }
 
@@ -34,17 +37,15 @@ main {
 }
 
 label {
-  color: 000000;
+  color: black;
   font-style: italic;
 }
 
 article {
-  background-color: #ffffff;
+  background-color: white;
 }
 
 button {
-  font-family: 'Quicksand', sans-serif;
-  color: #ffffff;
   background-color: #134d71;
   border-style: none;
   width: 175px;
@@ -55,13 +56,6 @@ button {
 
 img {
   height: 60px;
-
-}
-
-.content {
-  margin: 0% 15% 8% 15%;
-  padding: 3%;
-  border-radius: 10px;
 }
 
 .inputs {
@@ -70,8 +64,9 @@ img {
   border-radius: 10px;
 }
 
-.border {
-  border: 5px solid #000000;
+.content {
+  margin: 0% 15% 8% 15%;
+  padding: 3%;
 }
 
 label {
@@ -79,5 +74,5 @@ label {
 }
 
 .red-text {
-  color: #FF0000;
+  color: red;
 }

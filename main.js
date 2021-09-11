@@ -3,6 +3,7 @@ var mantraButton = document.querySelector('.radio-man')
 var receiveButton = document.querySelector('button')
 var contentBox = document.querySelector('.content')
 
+
 affirmationButton.addEventListener('click', selectAffirmationContent)
 mantraButton.addEventListener('click', selectMantraContent)
 receiveButton.addEventListener('click', displayMessage)
@@ -75,7 +76,6 @@ function displayMessage() {
 
 function displayError() {
     contentBox.classList.add('red-text')
-
     if (!contentType) {
       contentBox.innerText = 'Please select whether you would like to receive an affirmation or a mantra.'
     } else {
