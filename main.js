@@ -5,14 +5,14 @@ var contentBox = document.querySelector('.content')
 
 affirmationButton.addEventListener('click', selectAffirmationContent)
 mantraButton.addEventListener('click', selectMantraContent)
-receiveButton.addEventListener('click', displayContent)
+receiveButton.addEventListener('click', displayMessage)
+
 var mantras = [
   'Breathing in, I send myself love. Breathing out, I send love to someone else who needs it.',
   'Don’t let yesterday take up too much of today.',
   'Every day is a second chance.',
   'Tell the truth and love everyone.',
   'I am free from sadness.',
-  'I am enough.',
   'In the beginning it is you, in the middle it is you and in the end it is you.',
   'I love myself.',
   'I am present now.',
@@ -41,43 +41,56 @@ var affirmations = [
   'Everything I need comes to me in the perfect time.',
   'I use my words and thoughts as tools to shape my future.',
 ]
-var errors = [
-  'Please select whether you would like to receive an affirmation or a mantra.'
-]
-var contentType = errors;
+
+var contentType;
+var seenType;
+var messageType;
 
 var mantrasSeen = []
 var affirmationsSeen = []
 
 function selectAffirmationContent() {
   contentType = affirmations;
+  seenType = affirmationsSeen;
+  messageType = 'affirmation'
 }
 
 function selectMantraContent() {
   contentType = mantras;
+  seenType = mantrasSeen;
+  messageType = 'mantra'
 }
 
-function displayContent() {
-  var index = getRandomIndex(contentType);
-  var content = contentType[index];
-
-  if (contentType === errors) {
-    contentBox.classList.add('red-text')
-  } else {
+function displayMessage() {
+  if (contentType && contentType.length) {
     contentBox.classList.remove('red-text')
+    var index = getRandomIndex(contentType);
+    var message = contentType[index];
+    contentBox.innerHTML = `${message}`;
+    moveMessage(index)
+  } else {
+    displayError()
   }
+}
 
-  contentBox.innerHTML = `${content}`;
+function displayError() {
+    contentBox.classList.add('red-text')
+
+    if (!contentType) {
+      contentBox.innerText = 'Please select whether you would like to receive an affirmation or a mantra.'
+    } else {
+      contentBox.innerText = `That's all available ${messageType}s. You'll now start seeing repeated messages.`
+      for (var i = 0; i < seenType.length; i++) {
+        contentType.push(seenType[i]);
+      }
+  }
 }
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length)
 }
 
-// After displaying each message,
-// Remove that message from its array, and
-// push it into the appropriate ...Seen array
-
-// If the content array is empty,
-// display notification that they will now start seeing repeated messages, and
-// add move ...Seen messages back to appropriate content array
+function moveMessage(index) {
+  seenType.push(contentType[index])
+  contentType.splice(index, 1)
+}
